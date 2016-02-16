@@ -5,7 +5,7 @@ from twilio.rest import TwilioRestClient
 
 import json
 
-app = Flask(__name__)
+app = Flask('app')
 
 sched = BackgroundScheduler(timezone='utc')
 
@@ -52,7 +52,6 @@ def trash_in():
             body="Time to bring the trash back in, %s!" % name.title(),
             to="+%s" % phone,
             from_="+15134492254")
-trash_in()
 
 # Times in UTC
 sched.add_job(trash_out, 'cron', day_of_week="sun", hour=23, minute=59)
@@ -60,4 +59,4 @@ sched.add_job(trash_in, 'cron', day_of_week="mon", hour=23, minute=59)
 sched.start()
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='127.0.0.1')
