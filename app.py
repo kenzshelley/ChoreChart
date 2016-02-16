@@ -22,9 +22,6 @@ firebase = firebase.FirebaseApplication('https://doyourchores.firebaseio.com', N
 def hello():
     return "Hello World!"
 
-def test_job():
-    print "Ran the job!"
-
 def trash_out():
     last_person = firebase.get('/last_out', None)
     next_person_ind = (last_person + 1) % 7
